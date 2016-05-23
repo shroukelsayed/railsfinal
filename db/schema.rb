@@ -90,11 +90,6 @@ ActiveRecord::Schema.define(version: 20160523094013) do
 
   add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
-  create_table "user_friends", id: false, force: :cascade do |t|
-    t.integer "user_id",   limit: 4, null: false
-    t.integer "friend_id", limit: 4, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.text     "username",               limit: 65535
     t.datetime "created_at",                                        null: false

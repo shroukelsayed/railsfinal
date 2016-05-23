@@ -45,10 +45,10 @@
       </ul>
     </div>
   <% end %>
-  <table style="margin:20px" cellpadding="10">
+  <table style="margin:20px;margin-top:20%;" cellpadding="10">
     <thead>
       <tr>
-        <th><%= f.label :name %></th>
+        <th><%= f.label :name %></th>&nbsp;
         <th><%= f.label :amount %></th>
         <th><%= f.label :price %></th>
         <th><%= f.label :comment %></th>
@@ -56,8 +56,8 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= f.text_field :name %>&nbsp;&nbsp;</td>
-        <td><%= f.number_field :amount %>&nbsp;&nbsp;</td>
+        <td><%= f.text_field :name %>&nbsp;</td>
+        <td><%= f.number_field :amount %>&nbsp;</td>
         <td><%= f.text_field :price %>&nbsp;&nbsp;</td>
         <td><%= f.hidden_field :order_id,:value => @oid %>&nbsp;&nbsp;</td>
         <td><%= f.text_area :comment %>&nbsp;&nbsp;</td>
