@@ -1,52 +1,76 @@
-<h1 style="margin-left: 20px;">Invite Friend</h1>
-<%= form_for(@invitation) do |f| %>
-  <% if @invitation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+<p id="notice"><%= notice %></p>
+<br> <br>
+<div class="container">
+<h1 style="font-size:25px"><b> Orders</b></h1>
 
-      <ul>
-      <% @order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-  <div style="width: 500px;height: 400px;margin-top: 20px;margin-left: 20px;">
-    <div class="field">
-      <%= f.label :Order%>
-      <%= f.text_field :order_id %>
-    </div>
-    <div class="field">
-      <h3>Write your friend email </h3>
-      <%= f.label :email %><br>
-    <%= f.email_field :email %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-</div>
+
+<a style='margin-left:500px' href="/orders/new">Start New Order</a>
+</b>
+<table style='margin-left:10px ; margin-top:50px ; width:700px ;padding: 15px ; text-align: left' class='table'>
+  <thead>
+    <tr style="font-size:15px">
+      <th>Order</th>
+      <th>Restaurant</th>
+      <th>Status</th>
+      <th>Actions</th>
+
+      
+      <th colspan="10"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.order_type %></td>
+        <td><%= order.restaurant %></td>
+
+        <td><%= order.status %></td>
+
+        <% if order.status == 'finish'  %>
+          <!-- <td><a href="/orders/<%= order.id %>">View </a> -->
+          <td><a  href="/items/new?oid=<%= order.id %>">View </a>
+        <% else %>
+          <td>
+          <a  href="/items/new?oid=<%= order.id %>">View </a>
+          <a  href="/orders/<%= order.id %>/edit">Finish</a>
+    
+          <a data-confirm="Are you sure?" data-rails-ajax-remote="true" data-remote="true" rel="nofollow" data-method="delete" href="/orders/<%= order.id %>">Cancel</a>
+          </td>
+          
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<table class='table' style='margin-left:720px ; margin-top:-163px ; width:50px ;padding: 15px ; text-align: left  '  >
+<tr style="font-size:15px">
+<th>Invited </th>
+</tr>
+  <% @invited.each do |invite| %>
+  <tr>
+  <td> <%= invite %></td>
+  
+</tr>
 <% end %>
 
-<div style="border: 2px solid pink;width: 600px;height: 400px;float: right;margin-top: -400px;margin-right: 300px;">
-    <h3 style="margin-left: 150px;">Invited Friends</h3>
+</table>
 
-
-  <% @invitations.each do |invitation| %>
-  <%@id=invitation.friend_id  %>
-  <%@friend =  User.find_by(id:@id) %>
-  <div>
-  <i style="color:black;margin-left: 20px;">
-    <%= h @friend.name %><br/>
-   
-    <span class="btn btn-danger" style="margin-left: 20px;">
-    <%= link_to "remove", invitation, :method => :delete %>
-    </span>
-    <br>
-    </i>
-    </div>
- 
+<table class='table' style='margin-left:800px ; margin-top:-163px ; width:50px ;padding: 15px ; text-align: left '  >
+<tr style="font-size:15px">
+<th>Joined </th>
+</tr>
+  <% @joined.each do |join| %>
+  <tr>
+  <td> <%= join %></td>
   
-  <% end %>
-  
+</tr>
+<% end %>
 
+</table>
+
+<br>
 </div>
+
+

@@ -5,7 +5,20 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    puts @orders
+    @invited = []
+    @joined = []
+    @orders.each do |order| 
+      @order_id = order.id
+      puts @order_id 
+
+       @invited << Invitation.where("order_id = ?", @order_id).where("invite =1").count
+       @joined << Invitation.where("order_id = ?", @order_id).where("accept =1").count
+       puts @invited
+       puts @joined
+    end
   end
+
 
   # GET /orders/1
   # GET /orders/1.json
