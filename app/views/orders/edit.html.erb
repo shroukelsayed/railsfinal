@@ -1,0 +1,44 @@
+ <div class=" container">
+<h1 style="font-family:Times New Roman"> Finishing Order </h1>
+
+ <div style ="margin-left:400px" >
+<h1 style="font-family:Times New Roman"> Finishing Order </h1>
+
+<%= form_for(@order) do |f| %>
+  <% if @order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ 
+ 
+ 
+  
+ 
+   <div class="form-group">
+    <b> Are you sure you want to finish order ? </b><br>
+    
+    <% if @order.status == 'finish' %>
+    
+    <%= f.hidden_field :status, :value =>'waiting' %>
+    <% else %>
+    <%= f.hidden_field :status, :value =>'finish' %>
+    <% end %>
+    </br> </br>
+    </div>
+  
+  <div class="actions ">
+    <%= f.submit %>
+
+  </div>
+<% end %>
+
+<%= link_to 'Show', @order %> |
+<%= link_to 'Back', orders_path %>

@@ -1,0 +1,26 @@
+<h2>Forgot your password?</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Send me reset password instructions" %>
+  </div>
+<% end %>
+
+<br>
+<a style="color:red;" rel="nofollow" data-method="get" href="/users/sign_in">Sign In </a>
+<br>
+<a style="color:red;" rel="nofollow" data-method="get" href="/users/sign_up">Sign Up </a>
+<br>
+<!-- #link to facebook -> shrouk -->
+<a style="color:red;" rel="nofollow" data-method="get" href="/users/auth/facebook">Sign In With Facebook </a>
+<br>
+<!-- #link to google -> shrouk -->
+<a style="color:red;" rel="nofollow" data-method="get" href="/users/auth/google_oauth2">Sign In With Google </a>
+

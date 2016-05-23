@@ -1,0 +1,33 @@
+<style type="text/css">
+  tr{
+    text-align: center;
+  }
+</style>
+
+
+<div style="width: 600px; margin-top: 10px;">
+ <h1 style="color:darkred; padding-bottom: 20px; text-align: center;">My Friends </h1>
+<div class="table-responsive">
+<table class="table table-hover">
+  <tr class="danger"><td>Friend Name</td><td>Remove Friend</td></tr>
+
+  <% for friendship in @user.friendships %>
+  <tr class="warning">
+  <% if friendship.friend.name %>
+    <td><h4 style="margin:auto;"><%= link_to friendship.friend.name  %></h4></td>
+    <td><span class="btn btn-danger">
+    <%= link_to "remove", friendship, :method => :delete %>
+    </span></td>
+  <% end %>
+  </tr>
+  <% end %>
+</table>
+</div>
+<p>
+  <br>
+  <h3 style="color:darkred;width: 300px;">Add New Friend :</h3>
+  <div style="margin-left: 150px;">
+      <%= render 'form' %>
+  </div>
+</p>
+</div>

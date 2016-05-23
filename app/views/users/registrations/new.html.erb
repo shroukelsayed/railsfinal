@@ -1,0 +1,51 @@
+<div class="col-md-9">
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name) ) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div>
+    <%= f.label :name %><br />
+    <%= f.text_field :name, class: "form-control", autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, class: "form-control", autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, class: "form-control",autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation,class: "form-control", autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.file_field :image  %>
+  </div>
+<br><br>
+  <div class="actions">
+    <%= f.submit "Sign up" ,class: "btn btn-primary col-md-12" %>
+  </div>
+<% end %>
+
+<br><br>
+
+
+<!-- #link to facebook -> shrouk -->
+<a class="btn btn-info" style="color:red; margin-left: 150px; margin-top: 15px;" rel="nofollow" data-method="get" href="/users/auth/facebook">Sign In With Facebook </a>
+<br>
+<!-- #link to google -> shrouk -->
+<a class="btn btn-info" style="color:red;float: right; margin-top: -35px; margin-right: 200px;" rel="nofollow" data-method="get" href="/users/auth/google_oauth2">Sign In With Google </a>
+
+
+</div>

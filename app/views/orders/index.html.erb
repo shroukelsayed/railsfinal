@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<br> <br>
+<div class="container">
+<h1 style="font-size:25px"><b> Orders</b></h1>
+
+
+<a style='margin-left:900px' href="/orders/new">Start New Order</a>
+</b>
+<table style='margin-left:200px ; margin-top:50px ; width:700px ;padding: 15px ; text-align: left' class='table'>
+  <thead>
+    <tr style="font-size:15px">
+      <th>Order</th>
+      <th>Restaurant</th>
+      <th>Status</th>
+      <th>Actions</th>
+
+      
+      <th colspan="10"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.order_type %></td>
+        <td><%= order.restaurant %></td>
+        <td><%= order.status %></td>
+
+        <% if order.status == 'finish'  %>
+          <!-- <td><a href="/orders/<%= order.id %>">View </a> -->
+          <td><a  href="/items/new?oid=<%= order.id %>">View </a>
+        <% else %>
+          <td>
+          <a  href="/items/new?oid=<%= order.id %>">View </a>
+          <a  href="/orders/<%= order.id %>/edit">Finish</a>
+    
+          <a data-confirm="Are you sure?" data-rails-ajax-remote="true" data-remote="true" rel="nofollow" data-method="delete" href="/orders/<%= order.id %>">Cancel</a>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+</div>
+

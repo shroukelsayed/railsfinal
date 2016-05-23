@@ -1,0 +1,25 @@
+
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Notifications</h1>
+
+
+    <% @notifications.each do |noti| %>
+
+      <% @order = Order.find(noti.order_id) %>
+
+        <% @f = Invitation.where("order_id = 2") %> 
+
+    <% @f.each do |ff| %>
+
+    <% if ff.friend_id == @id  %>
+
+      <h3><%= @order.user.name %> Asked you to join his <%= @order.order_type%><a style="margin-left: 100px;" class="btn btn-info" href="notifications/accept">Join</a> </h3>
+        
+    <% end %>
+  <% end %>
+  <% end %>
+
+<br>
+
+

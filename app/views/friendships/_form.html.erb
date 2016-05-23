@@ -1,0 +1,9 @@
+<%= form_for(@friendship) do |f| %>
+  <div class="field">
+    
+    <%= f.email_field :email,placeholder: "Plz enter friend email .." %>
+  </div>
+  <div class="actions">
+    <%= f.submit   %>
+  </div>
+<% end %>

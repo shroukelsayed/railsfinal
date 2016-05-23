@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<div style="background-color: #FFCCFF; border: 2px solid pink;width: 400px;height: 400px;margin-top: 10px;margin-left: 10px;">
+    <h3 style="text-align: center; color:darkred;">Latest Orders</h3>
+    
+     <% @orders.each do |order| %>
+      <p style='margin:20px;font-size: 16px;font-family: initial;font-style: italic;'>
+        <span style="font-size: 20px;"><%= link_to order.order_type  %></span>  on <%= order.created_at.strftime("%b %d, %Y")  %>
+        <br>
+      </p>
+    <% end %>
+</div>
+
+<div style="background-color: #FFCCFF; border: 2px solid pink;width: 400px;height: 400px;float: right;margin-top: -400px;margin-right: 100px;">
+    <h3 style="text-align: center; color:darkred;">Friends Activity</h3>
+
+	<% @user_friends.each do |friend| %>
+    	<% friend.orders.each do |order| %>
+   
+	      <p style='margin:20px;font-size: 16px;font-family: initial;font-style: italic;'>
+	        <span style="font-size: 20px;"><%= link_to friend.name %></span>  has created an order for <%= link_to order.order_type  %> from <%= link_to order.restaurant  %>
+	        <br>
+	      </p>
+     <% end %>	
+    <% end %>
+</div>
