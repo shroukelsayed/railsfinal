@@ -39,9 +39,11 @@ class InvitationsController < ApplicationController
           @invitation[:accept]=0
           respond_to do |format|
           if (@invitation.save)
+            @noti = Notification.new({"order_id"=>@invitation[:order_id]})
+            if @noti.save
             format.html { redirect_to invitations_url, notice: 'Order member was successfully created.' }
             format.json { head :no_content}
-
+          end
         end
         end
     
