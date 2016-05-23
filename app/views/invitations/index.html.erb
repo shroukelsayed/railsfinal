@@ -1,4 +1,4 @@
-<h1 style="margin-left: 20px;">Invite Friend</h1>
+<h1 style="margin-left: 5px;">Invite Friend</h1>
 <%= form_for(@invitation) do |f| %>
   <% if @invitation.errors.any? %>
     <div id="error_explanation">
@@ -11,7 +11,7 @@
       </ul>
     </div>
   <% end %>
-  <div style="width: 500px;height: 400px;margin-top: 20px;margin-left: 20px;">
+  <div style="width: 400px;height: 400px;margin-top: 20px;margin-left: 20px;">
     <div class="field">
       <%= f.label :Order%>
       <%= f.text_field :order_id %>
@@ -27,17 +27,17 @@
 </div>
 <% end %>
 
-<div style="border: 2px solid pink;width: 600px;height: 400px;float: right;margin-top: -400px;margin-right: 300px;">
+<div style="border: 2px solid pink;width: 400px;height: 400px;float: right;margin-top: -400px;margin-right: 300px;">
     <h3 style="margin-left: 150px;">Invited Friends</h3>
 
 
   <% @invitations.each do |invitation| %>
   <%@id=invitation.friend_id  %>
-  <%@friend =  User.find_by(id:@id) %>
+  <%@friend =  User.find(@id) %>
   <div>
   <i style="color:black;margin-left: 20px;">
     <%= h @friend.name %><br/>
-   
+
     <span class="btn btn-danger" style="margin-left: 20px;">
     <%= link_to "remove", invitation, :method => :delete %>
     </span>
@@ -50,3 +50,5 @@
   
 
 </div>
+
+

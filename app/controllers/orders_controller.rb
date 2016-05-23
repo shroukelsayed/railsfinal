@@ -25,16 +25,13 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order[:status]="waiting"
+    @type=params[:order][:order_type]
 
-    respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
-      else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
+        redirect_to invitations_url
+      
+  end
   end
 
   # PATCH/PUT /orders/1
@@ -71,6 +68,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:type, :restaurant, :menu_image, :user_id ,:status)
+       params.require(:order).permit(:order_type, :restaurant, :user_id ,:status)
     end
 end

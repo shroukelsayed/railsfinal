@@ -1,0 +1,57 @@
+<h1 style="margin-left: 20px;">Invite Friend</h1>
+<%= form_for(@invitation) do |f| %>
+  <% if @invitation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@order.errors.count, "error") %> prohibited this order from being saved:</h2>
+
+      <ul>
+      <% @order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div style="width: 500px;height: 400px;margin-top: 20px;margin-left: 20px;">
+	  <div class="field">
+	    <%= f.label :Order%>
+	    <%= f.text_field :order_id %>
+	  </div>
+	  <div class="field">
+	  	<h3>You can write afriend name or agroup: </h3>
+	  	<%= f.label :email %><br>
+		<%= f.email_field :email %>
+	  </div>
+	  <div class="actions">
+	    <%= f.submit %>
+	  </div>
+</div>
+<% end %>
+<div style="border: 2px solid pink;width: 600px;height: 400px;float: right;margin-top: -400px;margin-right: 300px;">
+    <h3 style="margin-left: 150px;">Friends Invited</h3>
+<p id="notice"><%= notice %></p>
+<table style='margin-left:100px ; margin-top:50px ; width:500px ;padding: 15px ; text-align: left' class='table'>
+  <thead>
+    <tr>
+      <th>Order</th>
+      <th>Friend</th>
+      <th>Status</th>
+      <th colspan="10"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  	<%if( @invitations) %>
+    <% @invitations.each do |invitation| %>
+      <tr>
+        <td><%= invitation.order_id %></td>
+        <td><%= invitation.friend_id%></td>
+        <td><%= invitation.accept %></td>
+        <td><%= link_to 'Show', invitation %></td>
+        <td><%= link_to 'Edit', edit_invitation_path(invitation) %></td>
+        <td><%= link_to 'Destroy', invitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+        </tbody>
+        </table>
+    <% end %>
+    <% end %>
+

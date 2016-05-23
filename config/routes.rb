@@ -18,7 +18,7 @@ get 'notifications/accept'
 
   devise_for :users, :controllers => {registrations: 'registrations' ,omniauth_callbacks: 'users/omniauth_callbacks' }
    
-
+  resources :invitations
   resources :groups
   resources :items
   resources :orders do 
